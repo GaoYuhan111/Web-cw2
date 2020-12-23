@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+      {% block title %}home{% endblock %}
+                    {% block head %}Home {% endblock %}
+      {% block body %}
+
+    <div class="widewrapper main">
+        <div class="container">
+          <div class="row">
+
+                      <div class="col-sm-8" id="blogs">
+                        {% from 'bootstrap/pagination.html' import render_pagination %}
+
+                          {% if blogs %}
+                              {% for blog in blogs %}
+                                  <h3 class="text-primary"><a class="show" href="{{ url_for('.show_post', blog_title=blog.title) }}">{{ blog.title }}</a></h3>
+                                  <P>
+                                      {{ blog.body|striptags|truncate }}
+                                      <small><a class="show" href="{{ url_for('.show_post', blog_title=blog.title) }}">Read More</a></small>
+                                  </P>
+                                  <small>
+                                      Comments:<a href="{{ url_for('.show_post', blog_title=blog.title) }}">{{ blog.num }}</a>&nbsp;&nbsp
+
+                                      <span class="float-right">{{ blog.timestamp }}</span>
+                                  </small>
+                                  {% if not loop.last %}
+                                      <hr>
+                                  {% endif %}
+                              {% endfor %}
+                              <div class="page-footer">{{ render_pagination(pagination) }}</div>
+                              <hr>
+                          {% else %}
+                              <div class="tip">
+                                  <h5>No blogs yet.</h5>
+                                  {% if username %}
+                                      <a class="show" href="{{ url_for('write_blog') }}">Write Now</a>
+                                  {% endif %}
+                              </div>
+                          {% endif %}
+                    </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}

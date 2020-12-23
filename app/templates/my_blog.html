@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+  {% block title %}My blogs{% endblock %}
+  {% block head %}My blogs{% endblock %}
+                {% block body %}
+    <div class="widewrapper main">
+        <div class="container about">
+          <div id="blogs">
+          {% from 'bootstrap/pagination.html' import render_pagination %}
+
+          {% if username %}
+
+          {% for message in get_flashed_messages() %}
+          <h4 style="color:red;"> {{message}} </h4>
+          {% endfor %}
+
+            {% if blogs %}
+                {% for blog in blogs %}
+                    <h3 class="text-primary"><a class="show" href="{{ url_for('.show_post', blog_title=blog.title) }}">{{ blog.title }}</a></h3>
+                    <P>
+                        {{ blog.body|striptags|truncate }}
+                        <small><a class="show" href="{{ url_for('.show_post', blog_title=blog.title) }}">Read More</a></small>
+                    </P>
+                    <small>
+                        Comments:<a href="{{ url_for('.show_post', blog_title=blog.title) }}#comments">{{ blog.num }}</a>&nbsp;&nbsp
+
+                        <span class="float-right">{{ blog.timestamp }}</span>
+                    </small>
+                    {% if not loop.last %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+                <div class="page-footer">{{ render_pagination(pagination) }}</div>
+            {% else %}
+                <div class="tip">
+                    <h5>No blogs yet.</h5>
+                    {% if username %}
+                        <a class="show" href="{{ url_for('write_blog') }}">Write Now</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% else %}
+        <h5>You need sign in before show all blogs you wrtten.</h5>
+        {% endif %}
+
+        </div>
+
+
+        </div>
+
+    </div>
+    {% endblock %}

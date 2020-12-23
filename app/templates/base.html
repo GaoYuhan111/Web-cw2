@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" manifest="demo.appcache">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../static/css/style.css" id="theme-styles">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="js/respond.js"></script>
+    <![endif]-->
+    <script>
+    window.addEventListener("load", function(){
+    	window.cookieconsent.initialise({
+    		"palette":{
+    			"popup":{
+    				"background":"#eaf7f7",
+    				"text":"#5c7291"
+    			},
+    			"button":{
+    				"background":"#56cbdb",
+    				"text":"#ffffff"
+    			}
+    		},
+    		"content":{
+    			"message":"This website uses cookies so that we can store your information for a while.",
+    			"dismiss":"Great!"
+    		}
+    	})});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="widewrapper masthead">
+            <div class="container">
+              <div id="sign">
+                {% if username %}
+                <h2 id="user">Welcome, {{username}}!</h2>
+                <a href="/logOut">
+                    log out
+                </a>
+                {% else %}
+                  <a href="/signIn">
+                      Sign In
+                  </a>
+                  <a href="/signUp">
+                      Sign Up
+                  </a>
+                {% endif %}
+              </div>
+
+                <div id="mobile-nav-toggle" class="pull-right">
+                    <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+
+                <nav class="pull-right clean-nav">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills navbar-nav">
+
+                            <li>
+                                <a href="/home">Home</a>
+                            </li>
+                            <li>
+                                <a href="/my_blog">My blog</a>
+                            </li>
+                            <li>
+                                <a href="/write_blog">Write blog</a>
+                            </li>
+                            <li>
+                                <a href="/my_info">My info</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+
+        <div class="widewrapper subheader">
+            <div class="container">
+                <div class="clean-breadcrumb">
+                    <a href="#">{% block head %}{% endblock %}</a>
+                </div>
+
+                <div class="clean-searchbox">
+                    <form action="/search" method="post" accept-charset="utf-8">
+                        <input class="searchfield" id="searchbox" type="text" placeholder="Search" name="search">
+                        <button class="searchbutton" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+      {{ moment.include_moment() }}
+
+    {% block body %}
+    {% endblock %}
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/modernizr.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+
+</body>
+</html>

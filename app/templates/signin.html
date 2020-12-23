@@ -1,0 +1,21 @@
+{% extends 'base2.html' %}
+{% block title %}Sign in{% endblock %}
+{% block body %}
+<div class="log">
+	<div class="content1">
+		<h2>Sign In Form</h2>
+		<form action="/signIn" method="post">
+			<input type="text" name="userid" value="USERNAME" placeholder="Username" onfocus="this.value = '';" required="required">
+			<input type="password" name="psw" value="PASSWORD" placeholder="password" onfocus="this.value = '';" required="required">
+			<div class="button-row">
+				<input type="submit" class="sign-in" value="Sign In">
+				<a href="/signUp" id="button">sign up</a>
+				<a href="/home" id="button2">return to home page</a>
+				<div class="clear"></div>
+			</div>
+			{% if error %}
+			 <p id="error1">{{error}}</p>
+	 	 	{% endif %}
+		</form>
+	</div>
+	{% endblock %}

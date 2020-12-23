@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block title %}Change password{% endblock %}
+{% block body %}
+<div class="log">
+	<div class="content1">
+		<h2>Change password</h2>
+		<form action="/change_psw" method="post">
+      <input type="text" name="userid" value="USERNAME" placeholder="Username" onfocus="this.value = '';" required="required">
+      <h4>Your old password:</h4>
+			<input type="password" name="old_psw" value="Old Password" placeholder="Old password" onfocus="this.value = '';"  required="required">
+        <h4>Your new password:</h4>
+			<input type="password" name="new_psw" value="New Password" placeholder="New password" onfocus="this.value = '';" required="required">
+			<div class="button-row">
+				<input type="submit" class="sign-in" value="Submit">
+				<a href="/signUp" id="button">sign up</a>
+				<a href="/home" id="button2">return to home page</a>
+				<div class="clear"></div>
+			</div>
+			{% if error %}
+			 <p id="error1">{{error}}</p>
+	 	 	{% endif %}
+		</form>
+	</div>
+	{% endblock %}

@@ -1,0 +1,16 @@
+CACHE MANIFEST
+/style.css
+/style1.css
+/bootstrap.min.css
+/respond.js
+/modernizr.js
+/jquery.min.js
+/bootstrap.min.js
+/base.html
+/base2.html
+
+NETWORK:
+
+
+FALLBACK:
+/templates/ /offline.html

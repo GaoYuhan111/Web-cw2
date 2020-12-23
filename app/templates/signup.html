@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block titel %}Sign up{% endblock %}
+{% block body %}
+<div class="log">
+	<div class="content2">
+		<h2>Sign Up Form</h2>
+		<form action="/signUp" method="post">
+			<input type="text" name="userid"  value="USERNAME" placeholder="Username" required="required" onfocus="this.value = '';">
+			<input type="tel" name="usrtel" value="PHONE" placeholder="phone:xxx-xxxx-xxxx" required="required" pattern="\d{3}-\d{4}-\d{4}" onfocus="this.value = '';">
+			<input type="email" name="email" value="EMAIL ADDRESS" onfocus="this.value = '';" placeholder="email address" required="required"><br>
+			<input type="number" name = "age" value="AGE" min="1" max="99" required="required" placeholder="age" onfocus="this.value = '';">
+			<input type="password" name="psw" value="PASSWORD" placeholder="password" required="required" onfocus="this.value = '';">
+			<div class="button-row">
+				<input type="submit" class="register" value="Register">
+				<a href="/signIn" id="button2">return to sign in</a>
+			</div>
+			{% if error %}
+			 <br><br><p id="error2">{{error}}</p>
+	 	 	{% endif %}
+		</form>
+	</div>
+	<div class="clear"></div>
+</div>
+{% endblock %}

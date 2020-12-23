@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Write blog{% endblock %}
+  {% block head %}Write blog{% endblock %}
+                {% block body %}
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                    <h2>Write a new blog</h2>
+
+                    <form action="/write_blog" method="post" accept-charset="utf-8" class="contact-form">
+                        <input type="text" name="title" id="contact-name" placeholder="Title" class="form-control input-lg">
+
+                        <textarea rows="10" name="body" id="contact-body" placeholder="Body" class="form-control input-lg"></textarea>
+                        <div class="buttons clearfix">
+                            <button type="submit" class="btn btn-xlarge btn-clean-one">Submit</button>
+                        </div>
+                        {% if error %}
+                          <h4 style="color:red;"> {{error}} </h4>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+  
